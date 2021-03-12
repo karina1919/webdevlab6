@@ -1,0 +1,19 @@
+ <div class="albums-info">
+   <h2>Album list</h2>
+    <label>Album Title: </label>
+    <input for="new-album" #title />
+      <button (click)="add(title.value); title.value=''">Add Album</button>
+   </div>
+  <div *ngIf="!loading">
+    <ul>
+      <li *ngFor="let album of albums">
+        <p>user ID: {{album.userId}}</p>
+        <p><a [routerLink]="['/albums',album.id]">album ID: {{album.id}} </a> </p>
+        <button (click)="deleteAlbum(album.id)">x</button>
+      </li>
+    </ul>
+  </div>
+
+  <div *ngIf="loading">
+    <p>Loading list of albums...</p>
+  </div>
